@@ -220,8 +220,8 @@ class SistemaGestionAcademica {
     #estudiantes;
     #asignaturas;
     constructor() {// constructor de la clase
-        this.#estudiantes = [];
-        this.#asignaturas = [];
+        this.#estudiantes = {};
+        this.#asignaturas = {};
     }
 
     agregarEstudiante(estudiante) { // agregar estudiante
@@ -312,18 +312,22 @@ class SistemaGestionAcademica {
 const direccion1 = new Direccion("Calle Falsa", 123, "Piso 1", "28080", "Madrid", "Madrid");
 const direccion2 = new Direccion("Av. Siempre Viva", 742, "Bajo", "28080", "Madrid", "Madrid");
 
+
 const sistema = new SistemaGestionAcademica();
 
 
 const estudiante1 = new Estudiante(1, "Juan Perez", 20, direccion1);
 const estudiante2 = new Estudiante(2, "Ana Gomez", 22, direccion2);
+const estudiante3 = new Estudiante(3, "Alex Galan", 20, direccion1);
 
 sistema.agregarEstudiante(estudiante1);
 sistema.agregarEstudiante(estudiante2);
+sistema.agregarEstudiante(estudiante3);
+
 
 
 const asignatura1 = new Asignatura("Matematicas I");
-const asignatura2 = new Asignatura("Historia II " );
+const asignatura2 = new Asignatura("Historia II" );
 const asignatura3 = new Asignatura("Ingles");
 const asignatura4 = new Asignatura("PE");
 
@@ -397,20 +401,26 @@ function mostrarMenu() {
                 sistema.agregarAsignatura(asignatura);
                 break;
             }
-            case '4': {// no va
+            case '4': {// no va HACER COMO EL 5 SI NO SALE DE ESTA FORMA 
                 const id = prompt("Introduce el ID del estudiante: ");
                 const nombreAsignatura = prompt("Introduce el nombre de la asignatura: ");
 
                 console.log("ID:", id);
                 console.log("Nombre de la asignatura:", nombreAsignatura);
 
+                // Buscar el estudiante y la asignatura en el sistema
                 const estudiante = sistema.estudiantes?.[id];
                 const asignatura = sistema.asignaturas?.[nombreAsignatura];
-                if (estudiante && asignatura) {
+
+                // Verificar si existen tanto el estudiante como la asignatura
+                if (!estudiante) {
+                    console.log(`Estudiante con ID ${id} no encontrado.`);
+                } else if (!asignatura) {
+                    console.log(`Asignatura ${nombreAsignatura} no encontrada.`);
+                } else {
+                    // Si ambos existen, matricular al estudiante en la asignatura
                     estudiante.matricularAsignatura(asignatura);
                     console.log(`Estudiante con ID ${id} matriculado en ${nombreAsignatura}.`);
-                } else {
-                    console.log("Estudiante o asignatura no encontrado.");
                 }
                 break;
             }
