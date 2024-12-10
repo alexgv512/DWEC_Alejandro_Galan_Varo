@@ -176,17 +176,21 @@ class Asignatura {
     #estudiantes;
 
     constructor(nombre) {// Constructor de la clase Asignatura
-
+        
         if (!/^[a-zA-Z\sIVXLCDM]+$/.test(nombre)) {// Compruebo si el nombre de la asignatura es valido
             throw new Error("El nombre de la asignatura debe contener solo letras, números romanos y espacios.");
         }
 
+    
         this.#nombre = nombre;
         this.#estudiantes = [];
     }
 //Getters de la clase Asignatura
     get nombre() {
         return this.#nombre;
+    }
+    get estudiantes(){
+        return this.#estudiantes;
     }
 
     promedio() {// Promedio de la calificación de cada estudiante
@@ -195,7 +199,7 @@ class Asignatura {
 
         for (const estudiante of this.#estudiantes) {// Recorro cada estudiante
             const calificaciones = estudiante.asignaturas[this.#nombre]; // Obtengo las calificaciones de la asignatura
-            totalCalificaciones += calificaciones.reduce((total, cal) => total + cal[1], 0);// Calculo el total de la suma de las calificaciones de cada estudiante
+            totalCalificaciones += calificaciones.reduce((total, cal) => total + cal, 0);// Calculo el total de la suma de las calificaciones de cada estudiante
             numeroCalificaciones += calificaciones.length;// Calculo el total de la cantidad de estudiantes
         }
         if (numeroCalificaciones > 0) {
@@ -215,8 +219,8 @@ class SistemaGestionAcademica {
     #estudiantes;
     #asignaturas;
     constructor() {// constructor de la clase
-        this.estudiantes = {};
-        this.asignaturas = {};
+        this.#estudiantes = {};
+        this.#asignaturas = {};
     }
 
     agregarEstudiante(estudiante) { // agregar estudiante
@@ -297,15 +301,13 @@ class SistemaGestionAcademica {
             console.log(estudiante.edad);
             console.log(estudiante.direccion.toString());
             
-            for (const asignatura of estudiante.asignaturas) {// Recorro cada asignatura
+            for (const asignatura of estudiante.#asignaturas) {// Recorro cada asignatura
                 console.log(asignatura[0], asignatura[1]);
             }
            console.log(estudiante.promedio());
         }
     }
 }
-
-
 
 const direccion1 = new Direccion("Calle Falsa", 123, "Piso 1", "28080", "Madrid", "Madrid");
 const direccion2 = new Direccion("Av. Siempre Viva", 742, "Bajo", "28080", "Madrid", "Madrid");
@@ -320,8 +322,8 @@ sistema.agregarEstudiante(estudiante1);
 sistema.agregarEstudiante(estudiante2);
 
 
-const asignatura1 = new Asignatura("Matemáticas");
-const asignatura2 = new Asignatura("Historia");
+const asignatura1 = new Asignatura("Matematicas I");
+const asignatura2 = new Asignatura("Historia II " );
 
 sistema.agregarAsignatura(asignatura1);
 sistema.agregarAsignatura(asignatura2);
