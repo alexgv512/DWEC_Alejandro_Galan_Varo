@@ -99,6 +99,7 @@ class Persona {
 
 class Estudiante extends Persona {
     #asignaturas;
+    
     constructor(id, nombre, edad, direccion) {// Constructor de la clase Estudiante
         super(id, nombre, edad, direccion);
         this.#asignaturas = {};
@@ -259,12 +260,6 @@ class SistemaGestionAcademica {
         }
     }
 
-    reporteEstudiantes() {// reporte de estudiantes
-        for (const estudiante of Object.values(this.#estudiantes)) {
-            console.log("ID: " + estudiante.id + ", Nombre: " + estudiante.nombre + ", Promedio: " + estudiante.promedio().toFixed(2));
-        }
-    }
-
     promedioGeneral() {// Promedio general de los estudiantes
         let totalPromedio = 0;
         let numeroEstudiantes = 0;
@@ -294,21 +289,26 @@ class SistemaGestionAcademica {
     }
     
     //hacer el reporte de los estudiates con sus notas por asignatura y los datos de cada estudiate
-    reporte() {
+    reporteEstudiantes() {
         console.log("reporte");
         for (const estudiante of Object.values(this.#estudiantes)) { // Recorro cada estudiante
-            console.log(estudiante.nombre);
-            console.log(estudiante.edad);
-            console.log(estudiante.direccion.toString());
-            
-            for (const asignatura of estudiante.#asignaturas) {// Recorro cada asignatura
-                console.log(asignatura[0], asignatura[1]);
+            console.log("--- Estudiante ---");
+            console.log("Id: " + estudiante.id);
+            console.log("Nombre: " + estudiante.nombre);
+            console.log("Edad: " + estudiante.edad);
+            console.log("Direccion: " +estudiante.direccion.toString());
+          
+            // Usamos el getter asignatura para acceder a las asignaturas
+            for (const [clave, valor] of Object.entries(estudiante.asignatura)) {
+                console.log(clave, valor);
             }
-           console.log(estudiante.promedio());
+           console.log("Promedio: " + estudiante.promedio());
         }
     }
 }
 
+
+//prueba basica
 const direccion1 = new Direccion("Calle Falsa", 123, "Piso 1", "28080", "Madrid", "Madrid");
 const direccion2 = new Direccion("Av. Siempre Viva", 742, "Bajo", "28080", "Madrid", "Madrid");
 
@@ -339,6 +339,7 @@ estudiante1.agregarCalificacion(asignatura1, 7);
 estudiante2.agregarCalificacion(asignatura1, 9);
 
 // Mostrar reporte
+console.log("Reporte de estudiantes:");
 sistema.reporteEstudiantes();
 
 // Promedio general
@@ -359,12 +360,7 @@ function mostrarMenu() {
 
     return prompt("Selecciona una opción: ");
 }
-
-// Función principal para ejecutar el sistema
-function ejecutarSistema() {
-    const sistema = new SistemaGestionAcademica();
-    let opcion;
-    
+ 
     do {
         opcion = mostrarMenu();
         
@@ -434,7 +430,6 @@ function ejecutarSistema() {
             }
             case '7': {
                 sistema.reporteEstudiantes();
-                sistema.reporte;
                 break;
             }
             case '8': {
@@ -465,4 +460,3 @@ function ejecutarSistema() {
                 break;
         }
     } while (opcion !== '9');
-}
