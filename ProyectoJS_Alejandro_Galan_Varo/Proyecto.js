@@ -102,7 +102,7 @@ class Estudiante extends Persona {
     
     constructor(id, nombre, edad, direccion) {// Constructor de la clase Estudiante
         super(id, nombre, edad, direccion);
-        this.#asignaturas = {};
+        this.#asignaturas = [];
     }
     //Getters de la clase Estudiante    
     get asignatura(){
@@ -220,8 +220,8 @@ class SistemaGestionAcademica {
     #estudiantes;
     #asignaturas;
     constructor() {// constructor de la clase
-        this.#estudiantes = {};
-        this.#asignaturas = {};
+        this.#estudiantes = [];
+        this.#asignaturas = [];
     }
 
     agregarEstudiante(estudiante) { // agregar estudiante
@@ -290,7 +290,7 @@ class SistemaGestionAcademica {
     
     //hacer el reporte de los estudiates con sus notas por asignatura y los datos de cada estudiate
     reporteEstudiantes() {
-        console.log("reporte");
+        console.log("Reporte:");
         for (const estudiante of Object.values(this.#estudiantes)) { // Recorro cada estudiante
             console.log("--- Estudiante ---");
             console.log("Id: " + estudiante.id);
@@ -324,19 +324,25 @@ sistema.agregarEstudiante(estudiante2);
 
 const asignatura1 = new Asignatura("Matematicas I");
 const asignatura2 = new Asignatura("Historia II " );
+const asignatura3 = new Asignatura("Ingles");
+const asignatura4 = new Asignatura("PE");
 
 sistema.agregarAsignatura(asignatura1);
 sistema.agregarAsignatura(asignatura2);
+sistema.agregarAsignatura(asignatura3);
+sistema.agregarAsignatura(asignatura4);
 
 // Matricular estudiantes
 estudiante1.matricularAsignatura(asignatura1);
 estudiante2.matricularAsignatura(asignatura1);
 estudiante1.matricularAsignatura(asignatura2);
+estudiante1.matricularAsignatura(asignatura3);
 
 // Agregar calificaciones
 estudiante1.agregarCalificacion(asignatura1, 8);
 estudiante1.agregarCalificacion(asignatura1, 7);
 estudiante2.agregarCalificacion(asignatura1, 9);
+
 
 // Mostrar reporte
 console.log("Reporte de estudiantes:");
@@ -391,43 +397,50 @@ function mostrarMenu() {
                 sistema.agregarAsignatura(asignatura);
                 break;
             }
-            case '4': {
+            case '4': {// no va
                 const id = prompt("Introduce el ID del estudiante: ");
                 const nombreAsignatura = prompt("Introduce el nombre de la asignatura: ");
-                const estudiante = sistema.estudiantes[id];
-                const asignatura = sistema.asignaturas[nombreAsignatura];
+
+                console.log("ID:", id);
+                console.log("Nombre de la asignatura:", nombreAsignatura);
+
+                const estudiante = sistema.estudiantes?.[id];
+                const asignatura = sistema.asignaturas?.[nombreAsignatura];
                 if (estudiante && asignatura) {
                     estudiante.matricularAsignatura(asignatura);
+                    console.log(`Estudiante con ID ${id} matriculado en ${nombreAsignatura}.`);
                 } else {
                     console.log("Estudiante o asignatura no encontrado.");
                 }
                 break;
             }
-            case '5': {
+            case '5': {//no va
                 const id = prompt("Introduce el ID del estudiante: ");
                 const nombreAsignatura = prompt("Introduce el nombre de la asignatura: ");
-                const estudiante = sistema.estudiantes[id];
-                const asignatura = sistema.asignaturas[nombreAsignatura];
+                const estudiante = sistema.estudiantes?.[id];
+                const asignatura = sistema.asignaturas?.[nombreAsignatura];
                 if (estudiante && asignatura) {
                     estudiante.desmatricularAsignatura(asignatura);
+                    console.log(`Estudiante con ID ${id} desmatriculado de ${nombreAsignatura}.`);
                 } else {
                     console.log("Estudiante o asignatura no encontrado.");
                 }
                 break;
             }
-            case '6': {
+            case '6': {// no va
                 const id = prompt("Introduce el ID del estudiante: ");
                 const nombreAsignatura = prompt("Introduce el nombre de la asignatura: ");
                 const calificacion = parseFloat(prompt("Introduce la calificación: "));
-                const estudiante = sistema.estudiantes[id];
-                const asignatura = sistema.asignaturas[nombreAsignatura];
+                const estudiante = sistema.estudiantes?.[id];
+                const asignatura = sistema.asignaturas?.[nombreAsignatura];
                 if (estudiante && asignatura) {
                     estudiante.agregarCalificacion(asignatura, calificacion);
+                    console.log(`Estudiante con ID ${id} se le ha añadido la calificación de ${calificacion} en ${nombreAsignatura}.`);
                 } else {
                     console.log("Estudiante o asignatura no encontrado.");
                 }
                 break;
-            }
+            }4
             case '7': {
                 sistema.reporteEstudiantes();
                 break;
@@ -459,4 +472,4 @@ function mostrarMenu() {
                 console.log("Opción no válida.");
                 break;
         }
-    } while (opcion !== '9');
+    } while (true);
