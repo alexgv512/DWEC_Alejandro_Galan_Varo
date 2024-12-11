@@ -170,9 +170,6 @@ class Estudiante extends Persona {
             return 0;
         }
     }
-    
-
- 
 }
   
 
@@ -371,17 +368,17 @@ function mostrarMenu() {
     console.log("1. Agregar Estudiante");
     console.log("2. Eliminar Estudiante");
     console.log("3. Agregar Asignatura");
-    console.log("4. Matricular Estudiante en Asignatura");
-    console.log("5. Desmatricular Estudiante de Asignatura");
-    console.log("6. Agregar Calificación a Estudiante");
-    console.log("7. Ver Reporte de Estudiantes");
-    console.log("8. Ver Promedio General de Estudiantes");
-    console.log("9. Buscar Estudiantes");
-    console.log("10. Salir");
-
+    console.log("4. Eliminar Asignatura");
+    console.log("5. Matricular Estudiante en Asignatura");
+    console.log("6. Desmatricular Estudiante de Asignatura");
+    console.log("7. Agregar Calificación a Estudiante");
+    console.log("8. Ver Reporte de Estudiantes");
+    console.log("9. Ver Promedio General de Estudiantes");
+    console.log("10. Buscar Estudiantes");
+    console.log("11. Salir");
     return prompt("Selecciona una opción: ");
 }
- 
+ let salir = false;
     do {
         opcion = mostrarMenu();
         
@@ -412,7 +409,19 @@ function mostrarMenu() {
                 sistema.agregarAsignatura(asignatura);
                 break;
             }
-            case '4': { 
+            case '4': {
+                const nombreAsignatura = prompt("Introduce el nombre de la asignatura a eliminar: ");
+                const asignaturas = sistema.obtenerAsignaturas();
+            
+                if (!asignaturas[nombreAsignatura]) {
+                    console.log(`La asignatura ${nombreAsignatura} no existe en el sistema.`);
+                } else {
+                    sistema.eliminarAsignatura(nombreAsignatura);
+                    console.log(`Asignatura ${nombreAsignatura} eliminada correctamente.`);
+                }
+                break;
+            }
+            case '5': { 
                 const id = prompt("Introduce el ID del estudiante: ");
                 const nombreAsignatura = prompt("Introduce el nombre de la asignatura: ");
 
@@ -434,7 +443,7 @@ function mostrarMenu() {
                 }
                 break;
             }
-            case '5': {
+            case '6': {
                 const id = prompt("Introduce el ID del estudiante: ");
                 const nombreAsignatura = prompt("Introduce el nombre de la asignatura: ");
 
@@ -456,7 +465,7 @@ function mostrarMenu() {
                 break;
              
             }
-            case '6': {
+            case '7': {
                 const id = prompt("Introduce el ID del estudiante: ");
                 const nombreAsignatura = prompt("Introduce el nombre de la asignatura: ");
                 const calificacion = parseFloat(prompt("Introduce la calificación: "));
@@ -478,15 +487,15 @@ function mostrarMenu() {
                 }
                 break;
             }
-            case '7': {
+            case '8': {
                 sistema.reporteEstudiantes();
                 break;
             }
-            case '8': {
+            case '9': {
                 console.log("Promedio general de todos los estudiantes: " + sistema.promedioGeneral().toFixed(2) );
                 break;
             }
-            case '9': {
+            case '10': {
                 console.log("Buscar estudiate");
                 const patron = prompt("Introduce el patrón de búsqueda del nombre del estudiante: ");
                 const estudiantesEncontrados = sistema.buscarEstudiante(patron);
@@ -501,12 +510,13 @@ function mostrarMenu() {
                 }
                 break;
             }
-            case '10': {
+            case '11': {
                 console.log("¡Hasta pronto!");
+                salir = true;
                 break;
             }
             default:
                 console.log("Opción no válida.");
                 break;
         }
-    } while (true);
+    } while (!salir);
