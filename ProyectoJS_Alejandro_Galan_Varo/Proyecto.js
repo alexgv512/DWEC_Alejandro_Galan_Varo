@@ -224,6 +224,13 @@ class SistemaGestionAcademica {
         this.#asignaturas = {};
     }
 
+    obtenerEstudiantes() {
+        return this.#estudiantes;
+    }
+    obtenerAsignaturas() {    
+        return this.#asignaturas;
+    }
+
     agregarEstudiante(estudiante) { // agregar estudiante
         if (!this.#estudiantes[estudiante.id]) {// si no existe el estudiante
             this.#estudiantes[estudiante.id] = estudiante;// agregarlo
@@ -405,15 +412,14 @@ function mostrarMenu() {
                 const id = prompt("Introduce el ID del estudiante: ");
                 const nombreAsignatura = prompt("Introduce el nombre de la asignatura: ");
 
-                console.log("ID:", id);
-                console.log("Nombre de la asignatura:", nombreAsignatura);
+                const estudiantes = sistema.obtenerEstudiantes();
+                const asignaturas = sistema.obtenerAsignaturas();
 
                 // Buscar el estudiante y la asignatura en el sistema
-                const estudiante = sistema.estudiantes?.[id];
-                const asignatura = sistema.asignaturas?.[nombreAsignatura];
+                const estudiante = estudiantes[id];
+                const asignatura = asignaturas[nombreAsignatura];
 
-                // Verificar si existen tanto el estudiante como la asignatura
-                if (!estudiante) {
+                if (!estudiante) { // Verificar si existen tanto el estudiante como la asignatura
                     console.log(`Estudiante con ID ${id} no encontrado.`);
                 } else if (!asignatura) {
                     console.log(`Asignatura ${nombreAsignatura} no encontrada.`);
@@ -427,30 +433,47 @@ function mostrarMenu() {
             case '5': {//no va
                 const id = prompt("Introduce el ID del estudiante: ");
                 const nombreAsignatura = prompt("Introduce el nombre de la asignatura: ");
-                const estudiante = sistema.estudiantes?.[id];
-                const asignatura = sistema.asignaturas?.[nombreAsignatura];
-                if (estudiante && asignatura) {
-                    estudiante.desmatricularAsignatura(asignatura);
-                    console.log(`Estudiante con ID ${id} desmatriculado de ${nombreAsignatura}.`);
+
+                const estudiantes = sistema.obtenerEstudiantes();
+                const asignaturas = sistema.obtenerAsignaturas();
+
+                const estudiante = estudiantes[id];
+                const asignatura = asignaturas[nombreAsignatura];
+
+                if (!estudiante) {
+                    console.log(`Estudiante con ID ${id} no encontrado.`);
+                } else if (!asignatura) {
+                    console.log(`Asignatura ${nombreAsignatura} no encontrada.`);
                 } else {
-                    console.log("Estudiante o asignatura no encontrado.");
+                    // Si ambos existen, desmatriculamos al estudiante de la asignatura
+                    estudiante.desmatricularAsignatura(asignatura);
+                    console.log(`Estudiante con ID ${id} dematriculado en ${nombreAsignatura}.`);
                 }
                 break;
+             
             }
             case '6': {// no va
                 const id = prompt("Introduce el ID del estudiante: ");
                 const nombreAsignatura = prompt("Introduce el nombre de la asignatura: ");
                 const calificacion = parseFloat(prompt("Introduce la calificación: "));
-                const estudiante = sistema.estudiantes?.[id];
-                const asignatura = sistema.asignaturas?.[nombreAsignatura];
-                if (estudiante && asignatura) {
+
+                const estudiantes = sistema.obtenerEstudiantes();
+                const asignaturas = sistema.obtenerAsignaturas();
+
+                const estudiante = estudiantes[id];
+                const asignatura = asignaturas[nombreAsignatura];
+
+                if (!estudiante) {
+                    console.log(`Estudiante con ID ${id} no encontrado.`);
+                } else if (!asignatura) {
+                    console.log(`Asignatura ${nombreAsignatura} no encontrada.`);
+                } else {
+                    // Si ambos existen, agregamos la calificación al estudiante en la asignatura
                     estudiante.agregarCalificacion(asignatura, calificacion);
                     console.log(`Estudiante con ID ${id} se le ha añadido la calificación de ${calificacion} en ${nombreAsignatura}.`);
-                } else {
-                    console.log("Estudiante o asignatura no encontrado.");
                 }
                 break;
-            }4
+            }
             case '7': {
                 sistema.reporteEstudiantes();
                 break;
