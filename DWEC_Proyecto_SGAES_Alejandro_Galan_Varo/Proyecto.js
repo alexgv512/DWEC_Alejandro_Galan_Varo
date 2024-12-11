@@ -1,3 +1,7 @@
+/*
+Enlace al repositorio de GitHub: https://github.com/alexgv512/DWEC_Alejandro_Galan_Varo
+*/ 
+
 class Direccion {
     #calle;
     #numero;
@@ -408,7 +412,7 @@ function mostrarMenu() {
                 sistema.agregarAsignatura(asignatura);
                 break;
             }
-            case '4': {// no va HACER COMO EL 5 SI NO SALE DE ESTA FORMA 
+            case '4': { 
                 const id = prompt("Introduce el ID del estudiante: ");
                 const nombreAsignatura = prompt("Introduce el nombre de la asignatura: ");
 
@@ -430,7 +434,7 @@ function mostrarMenu() {
                 }
                 break;
             }
-            case '5': {//no va
+            case '5': {
                 const id = prompt("Introduce el ID del estudiante: ");
                 const nombreAsignatura = prompt("Introduce el nombre de la asignatura: ");
 
@@ -452,7 +456,7 @@ function mostrarMenu() {
                 break;
              
             }
-            case '6': {// no va
+            case '6': {
                 const id = prompt("Introduce el ID del estudiante: ");
                 const nombreAsignatura = prompt("Introduce el nombre de la asignatura: ");
                 const calificacion = parseFloat(prompt("Introduce la calificación: "));
