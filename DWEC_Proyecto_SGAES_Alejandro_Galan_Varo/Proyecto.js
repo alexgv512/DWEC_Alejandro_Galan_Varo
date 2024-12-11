@@ -132,7 +132,7 @@ class Estudiante extends Persona {
         if (this.#asignaturas[asignatura.nombre]) {// Compruebo si la asignatura está en el objeto asignaturas
             delete this.#asignaturas[asignatura.nombre];// Si es así, lo elimino
             const index = asignatura.estudiantes.indexOf(this);// Obtengo el índice de estudiante en la lista de estudiantes de la asignatura
-            if (index !== -1) {
+            if (index !== -1) {// Compruebo si el estudiante está en la lista de estudiantes de la asignatura
                 asignatura.estudiantes.splice(index, 1);// Elimino el estudiante de la lista de estudiantes de la asignatura
             }
             console.log("Estudiante " + this.nombre + " desmatriculado de " + asignatura.nombre + " el " + fechaDesmatriculacion);
@@ -258,9 +258,16 @@ class SistemaGestionAcademica {
             console.log("Asignatura ya existe.");
         }
     }
+    
 
     eliminarAsignatura(nombreAsignatura) {// eliminar asignatura
         if (this.#asignaturas[nombreAsignatura]) {// si existe la asignatura
+           
+            //desmatriculo todos los estudiantes de la asignatura
+            for (const estudiante of this.#asignaturas[nombreAsignatura].estudiantes) {
+                estudiante.desmatricularAsignatura(this.#asignaturas[nombreAsignatura]);
+            }
+
             delete this.#asignaturas[nombreAsignatura];// la elimino
             console.log("Asignatura " + nombreAsignatura + " eliminada.");
         } else {
@@ -414,10 +421,10 @@ function mostrarMenu() {
                 const asignaturas = sistema.obtenerAsignaturas();
             
                 if (!asignaturas[nombreAsignatura]) {
-                    console.log(`La asignatura ${nombreAsignatura} no existe en el sistema.`);
+                    //console.log(`La asignatura ${nombreAsignatura} no existe en el sistema.`);
                 } else {
                     sistema.eliminarAsignatura(nombreAsignatura);
-                    console.log(`Asignatura ${nombreAsignatura} eliminada correctamente.`);
+                    //console.log(`Asignatura ${nombreAsignatura} eliminada correctamente.`);
                 }
                 break;
             }
