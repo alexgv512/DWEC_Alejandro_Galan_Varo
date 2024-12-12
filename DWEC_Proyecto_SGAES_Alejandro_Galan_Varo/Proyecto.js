@@ -106,7 +106,7 @@ class Estudiante extends Persona {
     
     constructor(id, nombre, edad, direccion) {// Constructor de la clase Estudiante
         super(id, nombre, edad, direccion);
-        this.#asignaturas = [];
+        this.#asignaturas = [];//asignaturas del estudiante, clave: nombre de la asignatura, valor: calificaciones 
     }
     //Getters de la clase Estudiante    
     get asignatura(){
@@ -130,7 +130,7 @@ class Estudiante extends Persona {
         const fechaDesmatriculacion = new Intl.DateTimeFormat('es-Es',{dateStyle: 'long'}).format(new Date()); // Obtengo la fecha actual
 
         if (this.#asignaturas[asignatura.nombre]) {// Compruebo si la asignatura está en el objeto asignaturas
-            delete this.#asignaturas[asignatura.nombre];// Si es así, lo elimino
+            delete this.#asignaturas[asignatura.nombre];// Si es así, lo elimino 
             const index = asignatura.estudiantes.indexOf(this);// Obtengo el índice de estudiante en la lista de estudiantes de la asignatura
             if (index !== -1) {// Compruebo si el estudiante está en la lista de estudiantes de la asignatura
                 asignatura.estudiantes.splice(index, 1);// Elimino el estudiante de la lista de estudiantes de la asignatura
@@ -156,7 +156,7 @@ class Estudiante extends Persona {
 
     //hacer el promedio de las notas de cada alumno 
 
-    promedio() {   // Promedio de la calificación de cada asignatura
+    promedio() { // Promedio de la calificación de cada asignatura
         let totalCalificaciones = 0;
         let numeroCalificaciones = 0;
 
@@ -185,7 +185,7 @@ class Asignatura {
 
     
         this.#nombre = nombre;
-        this.#estudiantes = [];
+        this.#estudiantes = [];//estudantes de la asignatura clave: id del estudiante, valor: objeto Estudiante
     }
 //Getters de la clase Asignatura
     get nombre() {
@@ -221,8 +221,8 @@ class SistemaGestionAcademica {
     #estudiantes;
     #asignaturas;
     constructor() {// constructor de la clase
-        this.#estudiantes = {};
-        this.#asignaturas = {};
+        this.#estudiantes = {};//estudiantes del sistema, clave: id del estudiante, valor: objeto Estudiante
+        this.#asignaturas = {};//asignaturas del sistema, clave: nombre de la asignatura, valor: objeto Asignatura
     }
 
     obtenerEstudiantes() {
@@ -258,14 +258,14 @@ class SistemaGestionAcademica {
             console.log("Asignatura ya existe.");
         }
     }
-    
+
 
     eliminarAsignatura(nombreAsignatura) {// eliminar asignatura
         if (this.#asignaturas[nombreAsignatura]) {// si existe la asignatura
            
             //desmatriculo todos los estudiantes de la asignatura
-            for (const estudiante of this.#asignaturas[nombreAsignatura].estudiantes) {
-                estudiante.desmatricularAsignatura(this.#asignaturas[nombreAsignatura]);
+            for (const estudiante of this.#asignaturas[nombreAsignatura].estudiantes) {// Recorro cada estudiante
+                estudiante.desmatricularAsignatura(this.#asignaturas[nombreAsignatura]);// desmatriculo
             }
 
             delete this.#asignaturas[nombreAsignatura];// la elimino
@@ -275,7 +275,7 @@ class SistemaGestionAcademica {
         }
     }
 
-    promedioGeneral() {// Promedio general de los estudiantes
+    promedioGeneral() {// Promedio general de los estudiantes 
         let totalPromedio = 0;
         let numeroEstudiantes = 0;
 
@@ -288,6 +288,16 @@ class SistemaGestionAcademica {
         } else {
             return 0;
         }
+    }
+
+    promedioGeneralMejorado() {
+        if (Object.values(this.#estudiantes).length == 0) {// si no hay estudiantes
+            return 0;
+        }
+        let promedio = Object.values(this.#estudiantes).reduce((suma, estudiante) => suma + estudiante.promedio(), 0);// sumo el promedio de todos los estudiantes
+        
+        return promedio / Object.values(this.#estudiantes).length;// calculo el promedio general
+
     }
 
     buscarEstudiante(patron) {
@@ -369,6 +379,8 @@ sistema.reporteEstudiantes();
 
 // Promedio general
 console.log("Promedio general de todos los estudiantes: " + sistema.promedioGeneral().toFixed(2));
+
+console.log("Promedio general Mejorado de todos los estudiantes: " + sistema.promedioGeneralMejorado().toFixed(2));
 
 function mostrarMenu() {
     console.log("\n--- MENÚ PRINCIPAL ---");
