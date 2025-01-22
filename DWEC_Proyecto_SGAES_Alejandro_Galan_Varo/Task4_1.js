@@ -62,7 +62,10 @@ class Persona {
         if (!/^[a-zA-Z\s]+$/.test(nombre)) {// compruebo si el nombre es valido
             throw new Error("El nombre debe contener solo letras y espacios.");
         }
+         
         this.#nombre = nombre;
+
+
         this.#id = id;
         this.#edad = edad;
         this.#direccion = direccion;
@@ -286,6 +289,7 @@ class SistemaGestionAcademica {
         }
     }
 
+
     promedioGeneralMejorado() {
         if (Object.values(this.#estudiantes).length == 0) {// si no hay estudiantes
             return 0;
@@ -393,10 +397,11 @@ function mostrarMenu() {
     console.log("11. Salir");
     return prompt("Selecciona una opción: ");
 }
- let salir = false;
-    do {
-        opcion = mostrarMenu();
-        
+
+let salir = false;
+do {
+    try {
+        const opcion = mostrarMenu();
         switch(opcion) {
             case '1': {
                 const id = prompt("Introduce el ID del estudiante: ");
@@ -415,91 +420,74 @@ function mostrarMenu() {
             }
             case '2': {
                 const id = prompt("Introduce el ID del estudiante a eliminar: ");
+                if (!id) throw new Error("El ID del estudiante es obligatorio.");
                 sistema.eliminarEstudiante(id);
                 break;
             }
             case '3': {
                 const nombre = prompt("Introduce el nombre de la asignatura: ");
+                if (!nombre) throw new Error("El nombre de la asignatura es obligatorio.");
                 const asignatura = new Asignatura(nombre);
                 sistema.agregarAsignatura(asignatura);
                 break;
             }
             case '4': {
                 const nombreAsignatura = prompt("Introduce el nombre de la asignatura a eliminar: ");
+                if (!nombreAsignatura) throw new Error("El nombre de la asignatura es obligatorio.");
                 const asignaturas = sistema.obtenerAsignaturas();
-            
                 if (!asignaturas[nombreAsignatura]) {
-                    //console.log(`La asignatura ${nombreAsignatura} no existe en el sistema.`);
-                } else {
-                    sistema.eliminarAsignatura(nombreAsignatura);
-                    //console.log(`Asignatura ${nombreAsignatura} eliminada correctamente.`);
+                    throw new Error(`La asignatura ${nombreAsignatura} no existe en el sistema.`);
                 }
+                sistema.eliminarAsignatura(nombreAsignatura);
                 break;
             }
             case '5': { 
                 const id = prompt("Introduce el ID del estudiante: ");
                 const nombreAsignatura = prompt("Introduce el nombre de la asignatura: ");
-
+                if (!id || !nombreAsignatura) throw new Error("Ambos, ID del estudiante y nombre de la asignatura son obligatorios.");
                 const estudiantes = sistema.obtenerEstudiantes();
                 const asignaturas = sistema.obtenerAsignaturas();
 
-                // Buscar el estudiante y la asignatura en el sistema
                 const estudiante = estudiantes[id];
                 const asignatura = asignaturas[nombreAsignatura];
 
-                if (!estudiante) { // Verificar si existen tanto el estudiante como la asignatura
-                    console.log(`Estudiante con ID ${id} no encontrado.`);
-                } else if (!asignatura) {
-                    console.log(`Asignatura ${nombreAsignatura} no encontrada.`);
-                } else {
-                    // Si ambos existen, matricular al estudiante en la asignatura
-                    estudiante.matricularAsignatura(asignatura);
-                    console.log(`Estudiante con ID ${id} matriculado en ${nombreAsignatura}.`);
-                }
+                if (!estudiante) throw new Error(`Estudiante con ID ${id} no encontrado.`);
+                if (!asignatura) throw new Error(`Asignatura ${nombreAsignatura} no encontrada.`);
+                estudiante.matricularAsignatura(asignatura);
+                console.log(`Estudiante con ID ${id} matriculado en ${nombreAsignatura}.`);
                 break;
             }
             case '6': {
                 const id = prompt("Introduce el ID del estudiante: ");
                 const nombreAsignatura = prompt("Introduce el nombre de la asignatura: ");
-
+                if (!id || !nombreAsignatura) throw new Error("Ambos, ID del estudiante y nombre de la asignatura son obligatorios.");
                 const estudiantes = sistema.obtenerEstudiantes();
                 const asignaturas = sistema.obtenerAsignaturas();
 
                 const estudiante = estudiantes[id];
                 const asignatura = asignaturas[nombreAsignatura];
 
-                if (!estudiante) {
-                    console.log(`Estudiante con ID ${id} no encontrado.`);
-                } else if (!asignatura) {
-                    console.log(`Asignatura ${nombreAsignatura} no encontrada.`);
-                } else {
-                    // Si ambos existen, desmatriculamos al estudiante de la asignatura
-                    estudiante.desmatricularAsignatura(asignatura);
-                    console.log(`Estudiante con ID ${id} dematriculado en ${nombreAsignatura}.`);
-                }
+                if (!estudiante) throw new Error(`Estudiante con ID ${id} no encontrado.`);
+                if (!asignatura) throw new Error(`Asignatura ${nombreAsignatura} no encontrada.`);
+                estudiante.desmatricularAsignatura(asignatura);
+                console.log(`Estudiante con ID ${id} desmatriculado de ${nombreAsignatura}.`);
                 break;
-             
             }
             case '7': {
                 const id = prompt("Introduce el ID del estudiante: ");
                 const nombreAsignatura = prompt("Introduce el nombre de la asignatura: ");
                 const calificacion = parseFloat(prompt("Introduce la calificación: "));
-
+                if (!id || !nombreAsignatura || isNaN(calificacion)) throw new Error("El ID del estudiante, nombre de la asignatura y calificación son obligatorios.");
                 const estudiantes = sistema.obtenerEstudiantes();
                 const asignaturas = sistema.obtenerAsignaturas();
 
                 const estudiante = estudiantes[id];
                 const asignatura = asignaturas[nombreAsignatura];
 
-                if (!estudiante) {
-                    console.log(`Estudiante con ID ${id} no encontrado.`);
-                } else if (!asignatura) {
-                    console.log(`Asignatura ${nombreAsignatura} no encontrada.`);
-                } else {
-                    // Si ambos existen, agregamos la calificación al estudiante en la asignatura
-                    estudiante.agregarCalificacion(asignatura, calificacion);
-                    console.log(`Estudiante con ID ${id} se le ha añadido la calificación de ${calificacion} en ${nombreAsignatura}.`);
-                }
+                if (!estudiante) throw new Error(`Estudiante con ID ${id} no encontrado.`);
+                if (!asignatura) throw new Error(`Asignatura ${nombreAsignatura} no encontrada.`);
+                estudiante.agregarCalificacion(asignatura, calificacion);
+                console.log(`Estudiante con ID ${id} se le ha añadido la calificación de ${calificacion} en ${nombreAsignatura}.`);
                 break;
             }
             case '8': {
@@ -507,12 +495,13 @@ function mostrarMenu() {
                 break;
             }
             case '9': {
-                console.log("Promedio general de todos los estudiantes: " + sistema.promedioGeneral().toFixed(2) );
+                console.log("Promedio general de todos los estudiantes: " + sistema.promedioGeneral().toFixed(2));
                 break;
             }
             case '10': {
-                console.log("Buscar estudiate");
+                console.log("Buscar estudiante");
                 const patron = prompt("Introduce el patrón de búsqueda del nombre del estudiante: ");
+                if (!patron) throw new Error("El patrón de búsqueda es obligatorio.");
                 const estudiantesEncontrados = sistema.buscarEstudiante(patron);
                 
                 if (estudiantesEncontrados.length > 0) {
@@ -531,7 +520,9 @@ function mostrarMenu() {
                 break;
             }
             default:
-                console.log("Opción no válida.");
-                break;
+                throw new Error("Opción no válida.");
         }
-    } while (!salir);
+    } catch (error) {
+        console.log(`Error: ${error.message}`);
+    }
+} while (!salir);
