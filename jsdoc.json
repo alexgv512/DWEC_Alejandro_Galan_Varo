@@ -1,0 +1,16 @@
+{
+    "source": {
+      "include": ["ProyectoJavaScript/DWEC_Proyecto_SGAES_Alejandro_Galan_Varo/Task4_3.js"],
+      "includePattern": ".js$",
+      "exclude": ["node_modules"]
+
+    },
+    "opts": {
+      "destination": "ProyectoJavaScript/DWEC_Proyecto_SGAES_Alejandro_Galan_Varo/documentacion_Task4_3",
+      "template": "node_modules/minami",
+      "recurse": true,
+      "private": true
+    },
+    "plugins": ["node_modules/jsdoc/plugins/markdown"]
+    
+  }

@@ -1,0 +1,20 @@
+{
+  "name": "dwec",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "doc_4_3": "jsdoc -c jsdoc.json ProyectoJavaScript/DWEC_Proyecto_SGAES_Alejandro_Galan_Varo_/Task4_3.js -d ProyectoJavaScript/DWEC_Proyecto_SGAES_Alejandro_Galan_Varo/documentacion -p"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "jsdoc": "^4.0.4"
+  },
+  "dependencies": {
+    "minami": "^1.2.3",
+    "taffydb": "^2.7.3"
+  }
+}
