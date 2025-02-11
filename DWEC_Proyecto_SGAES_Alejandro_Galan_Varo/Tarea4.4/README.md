@@ -83,7 +83,7 @@ archivo configuracion npm.
    npm run docum
 
  ## Uso
- ### Ejecuta la aplicación:
+ Ejecuta la aplicación:
    Sigue el menú en pantalla para interactuar con el sistema. Puedes agregar estudiantes, asignaturas, inscribir estudiantes en asignaturas y ver informes.
 
    Funcionalidades
