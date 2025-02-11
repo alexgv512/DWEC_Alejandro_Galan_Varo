@@ -6,6 +6,7 @@ Este proyecto es un sistema de gestión académica simple que permite a los usua
 ## Estructura del Proyecto
 El proyecto está organizado en los siguientes directorios y archivos:
 tarea4.4
+```
 ├── src
 │   ├── classes
 │   │   ├── Asignatura.js          # Defines the Asignatura class for subjects.
@@ -19,7 +20,7 @@ tarea4.4
 ├── package.json                    #
 archivo configuracion npm.
 └── README.md                       # 
-
+```
 ## Proceso de Organización en Módulos
 
 1. **Crear Directorios y Archivos:**
@@ -33,7 +34,7 @@ archivo configuracion npm.
 3. **Configurar JSDoc:**
    - Creamos un archivo `jsdoc.json` en el directorio raíz del proyecto con la siguiente configuración:
 
-      json
+   ```json
    {
      "source": {
        "include": ["src"],
@@ -48,34 +49,36 @@ archivo configuracion npm.
      },
      "plugins": ["plugins/markdown"]
    }
+   ```
 
 4.**Actualizar package.json:**
 
    - Nos aseguramos de que el archivo package.json tenga el siguiente script para generar la documentación:
 
+      ```json
       {
-   "name": "dwec",
-   "version": "1.0.0",
-   "main": "index.js",
-   "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1",
-      "docum": "jsdoc -c jsdoc.json src -d documentacion -p"
-   },
-   "keywords": [],
-   "author": "",
-   "license": "ISC",
-   "description": "",
-   "devDependencies": {
-      "jsdoc": "^4.0.4",
-      "minami": "^1.2.3"
-   },
-   "dependencies": {
-      "taffydb": "^2.7.3"
-   }
-   }
-
+      "name": "dwec",
+      "version": "1.0.0",
+      "main": "index.js",
+      "scripts": {
+         "test": "echo \"Error: no test specified\" && exit 1",
+         "docum": "jsdoc -c jsdoc.json src -d documentacion -p"
+      },
+      "keywords": [],
+      "author": "",
+      "license": "ISC",
+      "description": "",
+      "devDependencies": {
+         "jsdoc": "^4.0.4",
+         "minami": "^1.2.3"
+      },
+      "dependencies": {
+         "taffydb": "^2.7.3"
+      }
+      }
+      ```
 5.**Generar la Documentación:**
-   Ejecuta el siguiente comando para generar la documentación:
+      Ejecuta el siguiente comando para generar la documentación:
 
    npm run docum
 
