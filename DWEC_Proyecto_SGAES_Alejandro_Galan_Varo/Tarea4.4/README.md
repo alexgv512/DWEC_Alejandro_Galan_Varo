@@ -9,11 +9,11 @@ tarea4.4
 ```
 ├── src
 │   ├── classes
-│   │   ├── Asignatura.js          # Defines the Asignatura class for subjects.
-│   │   ├── Direccion.js           # Defines the Direccion class for addresses.
-│   │   ├── Estudiante.js          # Defines the Estudiante class for students.
-│   │   ├── Persona.js             # Defines the Persona class for persons.
-│   │   └── SistemaGestionAcademica.js # Defines the SistemaGestionAcademica class for managing the system.
+│   │   ├── Asignatura.js           
+│   │   ├── Direccion.js             
+│   │   ├── Estudiante.js           
+│   │   ├── Persona.js             
+│   │   └── SistemaGestionAcademica.js .
 │   ├── main.js                    # Entry point of the application.
 │   └── utils
 │       └── menu.js                # Utility functions for menu display and user input handling.
