@@ -1,12 +1,10 @@
-# Project Title: Sistema de Gestión Académica
+# Título del Proyecto: Sistema de Gestión Académica
 
-## Description
-This project is a simple academic management system that allows users to manage students and subjects. It includes functionalities for adding and removing students and subjects, enrolling students in subjects, and generating reports on student performance.
+## Descripción
+Este proyecto es un sistema de gestión académica simple que permite a los usuarios gestionar estudiantes y asignaturas. Incluye funcionalidades para agregar y eliminar estudiantes y asignaturas, inscribir estudiantes en asignaturas y generar informes sobre el rendimiento de los estudiantes.
 
-## Project Structure
-The project is organized into the following directories and files:
-
-```
+## Estructura del Proyecto
+El proyecto está organizado en los siguientes directorios y archivos:
 tarea4.4
 ├── src
 │   ├── classes
@@ -18,46 +16,76 @@ tarea4.4
 │   ├── main.js                    # Entry point of the application.
 │   └── utils
 │       └── menu.js                # Utility functions for menu display and user input handling.
-├── package.json                    # Configuration file for npm.
-└── README.md                       # Documentation for the project.
-```
+├── package.json                    #
+archivo configuracion npm.
+└── README.md                       # 
 
-## Setup
-1. Clone the repository from GitHub:
-   ```
-   git clone <repository-url>
-   ```
-2. Navigate to the project directory:
-   ```
-   cd tarea4.4
-   ```
-3. Install the necessary dependencies:
-   ```
-   npm install
-   ```
+## Proceso de Organización en Módulos
 
-## Usage
-1. Run the application:
-   ```
-   node src/main.js
-   ```
-2. Follow the on-screen menu to interact with the system. You can add students, subjects, enroll students in subjects, and view reports.
+1. **Crear Directorios y Archivos:**
+   - Organizamos las clases en el directorio `src/classes`.
+   - Colocamos el archivo principal `main.js` en el directorio `src`.
+   - Colocamos las funciones utilitarias en el directorio `src/utils`.
 
-## Features
-- Add and remove students and subjects.
-- Enroll students in subjects.
-- Add grades for students.
-- Generate reports on student performance.
-- Search for students by name.
+2. **Actualizar las Rutas de Importación:**
+   - Asegúramos de que todas las rutas de importación en los archivos JavaScript estén actualizadas para reflejar la nueva estructura de directorios.
 
-## Contributing
-If you would like to contribute to this project, please fork the repository and submit a pull request with your changes.
+3. **Configurar JSDoc:**
+   - Creamos un archivo `jsdoc.json` en el directorio raíz del proyecto con la siguiente configuración:
 
-## License
-This project is licensed under the MIT License.
+      json
+   {
+     "source": {
+       "include": ["src"],
+       "includePattern": ".js$",
+       "exclude": ["node_modules"]
+     },
+     "opts": {
+       "destination": "documentacion",
+       "template": "node_modules/minami",
+       "recurse": true,
+       "private": true
+     },
+     "plugins": ["plugins/markdown"]
+   }
 
-## Contact
-For any inquiries, please contact [Your Name] at [Your Email].
+4.**Actualizar package.json:**
 
-## GitHub Repository
-You can find the project repository at: [GitHub Repository URL]
+   - Nos aseguramos de que el archivo package.json tenga el siguiente script para generar la documentación:
+
+      {
+   "name": "dwec",
+   "version": "1.0.0",
+   "main": "index.js",
+   "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "docum": "jsdoc -c jsdoc.json src -d documentacion -p"
+   },
+   "keywords": [],
+   "author": "",
+   "license": "ISC",
+   "description": "",
+   "devDependencies": {
+      "jsdoc": "^4.0.4",
+      "minami": "^1.2.3"
+   },
+   "dependencies": {
+      "taffydb": "^2.7.3"
+   }
+   }
+
+5.**Generar la Documentación:**
+   Ejecuta el siguiente comando para generar la documentación:
+
+   npm run docum
+
+ ## Uso
+ ### Ejecuta la aplicación:
+   Sigue el menú en pantalla para interactuar con el sistema. Puedes agregar estudiantes, asignaturas, inscribir estudiantes en asignaturas y ver informes.
+
+   Funcionalidades
+   Agregar y eliminar estudiantes y asignaturas.
+   Inscribir estudiantes en asignaturas.
+   Agregar calificaciones para los estudiantes.
+   Generar informes sobre el rendimiento de los estudiantes.
+   Buscar estudiantes por nombre.
