@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href=".//src/css/estilos.css">
+</head>
+<body>
+
+    <header>
+        <h1>Sistema de Gestión Académica</h1>
+    </header>
+
+    <div class="container">
+        <div id="mensaje"></div>
+        <h1>Gestión de Estudiantes</h1>
+        <h2>Agregar Estudiante</h2>
+        <form id="formAgregarEstudiante" action="">
+            <input type="text" id="idEstudiante" placeholder="ID del Estudiante" required pattern="\d+">
+            <input type="text" id="nombreEstudiante" placeholder="Nombre del Estudiante" required>
+            <input type="text" id="edadEstudiante" placeholder="Edad del Estudiante" required min="1" max="120">
+            <input type="text" id="calle" placeholder="Calle" required>
+            <input type="text" id="numero" placeholder="Número" required pattern="\d+">
+            <input type="text" id="piso" placeholder="Piso" required pattern="\d+">
+            <input type="text" id="codigoPostal" placeholder="Código Postal" required pattern="\d{5}">
+            <input type="text" id="provincia" placeholder="Provincia" required>
+            <input type="text" id="localidad" placeholder="Localidad" required>
+            <button id="agregarEstudiante">Agregar Estudiante</button>
+            <div id="errorAgregarEstudiante" class="error-message"></div>
+        </form>
+    
+        <h2>Eliminar Estudiante</h2>
+        <form id="formEliminarEstudiante" action="">
+            <input type="text" id="idEliminar" placeholder="ID del Estudiante" required pattern="\d+">
+            <button id="eliminarEstudiante">Eliminar Estudiante</button>
+            <div id="errorEliminarEstudiante" class="error-message"></div>
+        </form>
+        
+        <h2>Agregar Asignatura</h2>
+        <form id="formAgregarAsignatura" action="">
+            <input type="text" id="nombreAsignatura" placeholder="Nombre de la Asignatura" required>
+            <button id="agregarAsignatura">Agregar Asignatura</button>
+            <div id="errorAgregarAsignatura" class="error-message"></div>
+        </form>
+        
+        <h2>Eliminar Asignatura</h2>
+        <form id="formEliminarAsignatura" action="">
+            <input type="text" id="nombreEliminar" placeholder="Nombre de la Asignatura" required>
+            <button id="eliminarAsignatura">Eliminar Asignatura</button>
+            <div id="errorEliminarAsignatura" class="error-message"></div>
+        </form>
+        
+        <h2>Matricular Estudiante</h2>
+        <form id="formMatricularEstudiante" action="">
+            <input type="text" id="idMatricular" placeholder="ID del Estudiante" required pattern="\d+">
+            <input type="text" id="nombreMatricular" placeholder="Nombre de la Asignatura" required>
+            <button id="matricularEstudiante">Matricular</button>
+            <div id="errorMatricularEstudiante" class="error-message"></div>
+        </form>
+      
+        <h2>Desmatricular Estudiante</h2>
+        <form id="formDesmatricularEstudiante" action="">
+            <input type="text" id="idDesmatricular" placeholder="ID del Estudiante" required pattern="\d+">
+            <input type="text" id="nombreDesmatricular" placeholder="Nombre de la Asignatura" required>
+            <button id="desmatricularEstudiante">Desmatricular</button>
+            <div id="errorDesmatricularEstudiante" class="error-message"></div>
+        </form>
+      
+        <h2>Asignar Calificación</h2>
+        <form id="formAsignarCalificacion" action="">
+            <input type="text" id="idCalificacion" placeholder="ID del Estudiante" required pattern="\d+">
+            <input type="text" id="nombreCalificacion" placeholder="Nombre de la Asignatura" required>
+            <input type="text" id="calificacion" placeholder="Calificación" required min="0" max="10">
+            <button id="agregarCalificacion">Asignar Calificación</button>
+            <div id="errorAsignarCalificacion" class="error-message"></div>
+        </form>
+      
+        <h2>Reporte de Estudiantes</h2>
+        <form id="formReporteEstudiantes" action="">
+            <button id="reporteEstudiantes">Ver Reporte</button>
+            <div id="errorReporteEstudiantes" class="error-message"></div>
+        </form>
+        <div id="reporteContainer"></div>
+        
+        <h2>Promedio General</h2>
+        <form id="formPromedioGeneral" action="">
+          <button id="promedioGeneral">Calcular Promedio</button>
+          <div id="errorPromedioGeneral" class="error-message"></div>
+        </form>
+    </div>
+
+    <script type="module" src="./src/main.js"></script>
+</body>
+</html>
