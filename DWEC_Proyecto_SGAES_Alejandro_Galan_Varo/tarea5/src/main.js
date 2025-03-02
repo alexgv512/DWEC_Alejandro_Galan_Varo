@@ -110,6 +110,11 @@ document.getElementById('eliminarEstudiante').addEventListener('click', (event) 
     }
 
     try {
+        const estudiantes = sistema.obtenerEstudiantes();
+        if (!estudiantes[id]) {
+            mostrarMensaje('errorEliminarEstudiante', 'El estudiante con ID ' + id + ' no existe.', 'error-message');
+            return;
+        }
         sistema.eliminarEstudiante(id);
         guardarEnLocalStorage();
         mostrarMensaje('errorEliminarEstudiante', 'Estudiante eliminado correctamente', 'success-message');
@@ -147,6 +152,11 @@ document.getElementById('eliminarAsignatura').addEventListener('click', (event) 
     }
 
     try {
+        const asignaturas = sistema.obtenerAsignaturas();
+        if (!asignaturas[nombre]) {
+            mostrarMensaje('errorEliminarAsignatura', 'La asignatura ' + nombre + ' no existe.', 'error-message');
+            return;
+        }
         sistema.eliminarAsignatura(nombre);
         guardarEnLocalStorage();
         mostrarMensaje('errorEliminarAsignatura', 'Asignatura eliminada correctamente', 'success-message');
@@ -170,6 +180,17 @@ document.getElementById('matricularEstudiante').addEventListener('click', (event
         const asignaturas = sistema.obtenerAsignaturas();
         const estudiante = estudiantes[id];
         const asignatura = asignaturas[nombreAsignatura];
+
+        if (!estudiante) {
+            mostrarMensaje('errorMatricularEstudiante', 'El estudiante con ID ' + id + ' no existe.', 'error-message');
+            return;
+        }
+
+        if (!asignatura) {
+            mostrarMensaje('errorMatricularEstudiante', 'La asignatura ' + nombreAsignatura + ' no existe.', 'error-message');
+            return;
+        }
+
         estudiante.matricularAsignatura(asignatura);
         guardarEnLocalStorage();
         mostrarMensaje('errorMatricularEstudiante', 'Estudiante matriculado correctamente', 'success-message');
@@ -193,6 +214,17 @@ document.getElementById('desmatricularEstudiante').addEventListener('click', (ev
         const asignaturas = sistema.obtenerAsignaturas();
         const estudiante = estudiantes[id];
         const asignatura = asignaturas[nombreAsignatura];
+
+        if (!estudiante) {
+            mostrarMensaje('errorDesmatricularEstudiante', 'El estudiante con ID ' + id + ' no existe.', 'error-message');
+            return;
+        }
+
+        if (!asignatura) {
+            mostrarMensaje('errorDesmatricularEstudiante', 'La asignatura ' + nombreAsignatura + ' no existe.', 'error-message');
+            return;
+        }
+
         estudiante.desmatricularAsignatura(asignatura);
         guardarEnLocalStorage();
         mostrarMensaje('errorDesmatricularEstudiante', 'Estudiante desmatriculado correctamente', 'success-message');
@@ -217,6 +249,17 @@ document.getElementById('agregarCalificacion').addEventListener('click', (event)
         const asignaturas = sistema.obtenerAsignaturas();
         const estudiante = estudiantes[id];
         const asignatura = asignaturas[nombreAsignatura];
+
+        if (!estudiante) {
+            mostrarMensaje('errorAsignarCalificacion', 'El estudiante con ID ' + id + ' no existe.', 'error-message');
+            return;
+        }
+
+        if (!asignatura) {
+            mostrarMensaje('errorAsignarCalificacion', 'La asignatura ' + nombreAsignatura + ' no existe.', 'error-message');
+            return;
+        }
+
         estudiante.agregarCalificacion(asignatura, calificacion);
         guardarEnLocalStorage();
         mostrarMensaje('errorAsignarCalificacion', 'Calificación agregada correctamente', 'success-message');
