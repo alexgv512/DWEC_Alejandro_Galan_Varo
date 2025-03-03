@@ -1,0 +1,21 @@
+{
+  "name": "tarea6",
+  "version": "1.0.0",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "tailwindcss -i ./src/estilos/principal.css -o ./src/estilos/salida.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@tailwindcss/forms": "^0.5.10",
+    "autoprefixer": "^10.4.20",
+    "flowbite": "^3.1.2",
+    "jquery": "^3.7.1",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.4.17"
+  }
+}
