@@ -84,8 +84,62 @@ document.getElementById('agregarEstudiante').addEventListener('click', (event) =
     const provincia = document.getElementById('provincia').value;
     const localidad = document.getElementById('localidad').value;
 
-    if (!id || !nombre || !edad || !calle || !numero || !piso || !codigoPostal || !provincia || !localidad) {
+    if (!id || !nombre || !edad || !calle || !numero || !codigoPostal || !provincia || !localidad) {
         mostrarMensaje('errorAgregarEstudiante', 'Por favor, complete todos los campos.', 'error-message');
+        return;
+    }
+
+    // Validar que el ID solo contenga números
+    if (!/^\d+$/.test(id)) {
+        mostrarMensaje('errorAgregarEstudiante', 'El ID debe contener solo números.', 'error-message');
+        return;
+    }
+
+    // Validar que el nombre solo contenga letras y espacios
+    if (!/^[A-Za-z\s]+$/.test(nombre)) {
+        mostrarMensaje('errorAgregarEstudiante', 'El nombre debe contener solo letras y espacios.', 'error-message');
+        return;
+    }
+
+    // Validar que la edad sea un número positivo
+    if (isNaN(edad) || edad <= 0 || edad > 120) {
+        mostrarMensaje('errorAgregarEstudiante', 'La edad debe ser un número entre 1 y 120.', 'error-message');
+        return;
+    }
+
+    // Validar que la calle solo contenga letras y espacios
+    if (!/^[A-Za-z\s]+$/.test(calle)) {
+        mostrarMensaje('errorAgregarEstudiante', 'La calle debe contener solo letras y espacios.', 'error-message');
+        return;
+    }
+
+    // Validar que el número solo contenga números
+    if (!/^\d+$/.test(numero)) {
+        mostrarMensaje('errorAgregarEstudiante', 'El número debe contener solo números.', 'error-message');
+        return;
+    }
+
+    // Validar que el piso solo contenga números (opcional)
+    if (piso && !/^\d*$/.test(piso)) {
+        mostrarMensaje('errorAgregarEstudiante', 'El piso debe contener solo números.', 'error-message');
+        return;
+    }
+
+    // Validar que el código postal solo contenga 5 números
+    if (!/^\d{5}$/.test(codigoPostal)) {
+        mostrarMensaje('errorAgregarEstudiante', 'El código postal debe contener 5 números.', 'error-message');
+        return;
+    }
+
+    // Validar que la provincia solo contenga letras y espacios
+    if (!/^[A-Za-z\s]+$/.test(provincia)) {
+        mostrarMensaje('errorAgregarEstudiante', 'La provincia debe contener solo letras y espacios.', 'error-message');
+        return;
+    }
+
+    // Validar que la localidad solo contenga letras y espacios
+    if (!/^[A-Za-z\s]+$/.test(localidad)) {
+        mostrarMensaje('errorAgregarEstudiante', 'La localidad debe contener solo letras y espacios.', 'error-message');
         return;
     }
 
@@ -106,6 +160,12 @@ document.getElementById('eliminarEstudiante').addEventListener('click', (event) 
 
     if (!id) {
         mostrarMensaje('errorEliminarEstudiante', 'Por favor, complete todos los campos.', 'error-message');
+        return;
+    }
+
+    // Validar que el ID solo contenga números
+    if (!/^\d+$/.test(id)) {
+        mostrarMensaje('errorEliminarEstudiante', 'El ID debe contener solo números.', 'error-message');
         return;
     }
 
@@ -132,6 +192,12 @@ document.getElementById('agregarAsignatura').addEventListener('click', (event) =
         return;
     }
 
+    // Validar que el nombre de la asignatura solo contenga letras, números y espacios
+    if (!/^[A-Za-z0-9IVXivx\s]+$/.test(nombre)) {
+        mostrarMensaje('errorAgregarAsignatura', 'El nombre de la asignatura debe contener solo letras, números y espacios.', 'error-message');
+        return;
+    }
+
     try {
         const asignatura = new Asignatura(nombre);
         sistema.agregarAsignatura(asignatura);
@@ -148,6 +214,12 @@ document.getElementById('eliminarAsignatura').addEventListener('click', (event) 
 
     if (!nombre) {
         mostrarMensaje('errorEliminarAsignatura', 'Por favor, complete todos los campos.', 'error-message');
+        return;
+    }
+
+    // Validar que el nombre de la asignatura solo contenga letras, números y espacios
+    if (!/^[A-Za-z0-9IVXivx\s]+$/.test(nombre)) {
+        mostrarMensaje('errorEliminarAsignatura', 'El nombre de la asignatura debe contener solo letras, números y espacios.', 'error-message');
         return;
     }
 
@@ -172,6 +244,18 @@ document.getElementById('matricularEstudiante').addEventListener('click', (event
 
     if (!id || !nombreAsignatura) {
         mostrarMensaje('errorMatricularEstudiante', 'Por favor, complete todos los campos.', 'error-message');
+        return;
+    }
+
+    // Validar que el ID solo contenga números
+    if (!/^\d+$/.test(id)) {
+        mostrarMensaje('errorMatricularEstudiante', 'El ID debe contener solo números.', 'error-message');
+        return;
+    }
+
+    // Validar que el nombre de la asignatura solo contenga letras, números y espacios
+    if (!/^[A-Za-z0-9IVXivx\s]+$/.test(nombreAsignatura)) {
+        mostrarMensaje('errorMatricularEstudiante', 'El nombre de la asignatura debe contener solo letras, números y espacios.', 'error-message');
         return;
     }
 
@@ -209,6 +293,18 @@ document.getElementById('desmatricularEstudiante').addEventListener('click', (ev
         return;
     }
 
+    // Validar que el ID solo contenga números
+    if (!/^\d+$/.test(id)) {
+        mostrarMensaje('errorDesmatricularEstudiante', 'El ID debe contener solo números.', 'error-message');
+        return;
+    }
+
+    // Validar que el nombre de la asignatura solo contenga letras, números y espacios
+    if (!/^[A-Za-z0-9IVXivx\s]+$/.test(nombreAsignatura)) {
+        mostrarMensaje('errorDesmatricularEstudiante', 'El nombre de la asignatura debe contener solo letras, números y espacios.', 'error-message');
+        return;
+    }
+
     try {
         const estudiantes = sistema.obtenerEstudiantes();
         const asignaturas = sistema.obtenerAsignaturas();
@@ -241,6 +337,24 @@ document.getElementById('agregarCalificacion').addEventListener('click', (event)
 
     if (!id || !nombreAsignatura || !calificacion) {
         mostrarMensaje('errorAsignarCalificacion', 'Por favor, complete todos los campos.', 'error-message');
+        return;
+    }
+
+    // Validar que el ID solo contenga números
+    if (!/^\d+$/.test(id)) {
+        mostrarMensaje('errorAsignarCalificacion', 'El ID debe contener solo números.', 'error-message');
+        return;
+    }
+
+    // Validar que el nombre de la asignatura solo contenga letras, números y espacios
+    if (!/^[A-Za-z0-9IVXivx\s]+$/.test(nombreAsignatura)) {
+        mostrarMensaje('errorAsignarCalificacion', 'El nombre de la asignatura debe contener solo letras, números y espacios.', 'error-message');
+        return;
+    }
+
+    // Validar que la calificación sea un número entre 0 y 10
+    if (isNaN(calificacion) || calificacion < 0 || calificacion > 10) {
+        mostrarMensaje('errorAsignarCalificacion', 'La calificación debe ser un número entre 0 y 10.', 'error-message');
         return;
     }
 

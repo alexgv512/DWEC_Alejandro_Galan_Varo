@@ -20,21 +20,21 @@
             <label for="idEstudiante">ID del Estudiante</label>
             <input type="text" id="idEstudiante" placeholder="ID del Estudiante" required pattern="\d+">
             <label for="nombreEstudiante">Nombre del Estudiante</label>
-            <input type="text" id="nombreEstudiante" placeholder="Nombre del Estudiante" required>
+            <input type="text" id="nombreEstudiante" placeholder="Nombre del Estudiante" required pattern="[A-Za-z\s]+">
             <label for="edadEstudiante">Edad del Estudiante</label>
-            <input type="text" id="edadEstudiante" placeholder="Edad del Estudiante" required pattern="\d+" title="La edad debe ser un número entre 1 y 120">
+            <input type="number" id="edadEstudiante" placeholder="Edad del Estudiante" required min="1" max="120">
             <label for="calle">Calle</label>
-            <input type="text" id="calle" placeholder="Calle" required pattern="[A-Za-z]+">
+            <input type="text" id="calle" placeholder="Calle" required pattern="[A-Za-z\s]+">
             <label for="numero">Número</label>
-            <input type="text" id="numero" placeholder="Número" required pattern="\d+"> 
+            <input type="text" id="numero" placeholder="Número" required pattern="\d+">
             <label for="piso">Piso</label>
-            <input type="text" id="piso" placeholder="Piso">
+            <input type="text" id="piso" placeholder="Piso" pattern="\d*">
             <label for="codigoPostal">Código Postal</label>
             <input type="text" id="codigoPostal" placeholder="Código Postal" required pattern="\d{5}">
             <label for="provincia">Provincia</label>
-            <input type="text" id="provincia" placeholder="Provincia" required pattern="[A-Za-z]+">
+            <input type="text" id="provincia" placeholder="Provincia" required pattern="[A-Za-z\s]+">
             <label for="localidad">Localidad</label>
-            <input type="text" id="localidad" placeholder="Localidad" required  pattern="[A-Za-z]+">
+            <input type="text" id="localidad" placeholder="Localidad" required pattern="[A-Za-z\s]+">
             <button id="agregarEstudiante">Agregar Estudiante</button>
             <div id="errorAgregarEstudiante" class="error-message"></div>
         </form>
@@ -50,7 +50,7 @@
         <h2>Agregar Asignatura</h2>
         <form id="formAgregarAsignatura" action="">
             <label for="nombreAsignatura">Nombre de la Asignatura</label>
-            <input type="text" id="nombreAsignatura" placeholder="Nombre de la Asignatura" required pattern="[A-Za-z0-9IVXivx]+">
+            <input type="text" id="nombreAsignatura" placeholder="Nombre de la Asignatura" required pattern="[A-Za-z0-9IVXivx\s]+">
             <button id="agregarAsignatura">Agregar Asignatura</button>
             <div id="errorAgregarAsignatura" class="error-message"></div>
         </form>
@@ -58,7 +58,7 @@
         <h2>Eliminar Asignatura</h2>
         <form id="formEliminarAsignatura" action="">
             <label for="nombreEliminar">Nombre de la Asignatura</label>
-            <input type="text" id="nombreEliminar" placeholder="Nombre de la Asignatura" required pattern="[A-Za-z0-9IVXivx]+">
+            <input type="text" id="nombreEliminar" placeholder="Nombre de la Asignatura" required pattern="[A-Za-z0-9IVXivx\s]+">
             <button id="eliminarAsignatura">Eliminar Asignatura</button>
             <div id="errorEliminarAsignatura" class="error-message"></div>
         </form>
@@ -66,9 +66,9 @@
         <h2>Matricular Estudiante</h2>
         <form id="formMatricularEstudiante" action="">
             <label for="idMatricular">ID del Estudiante</label>
-            <input type="text" id="idMatricular" placeholder="ID del Estudiante" required pattern="[A-Za-z]+">
+            <input type="text" id="idMatricular" placeholder="ID del Estudiante" required pattern="\d+">
             <label for="nombreMatricular">Nombre de la Asignatura</label>
-            <input type="text" id="nombreMatricular" placeholder="Nombre de la Asignatura" required pattern="[A-Za-z0-9IVXivx]+">
+            <input type="text" id="nombreMatricular" placeholder="Nombre de la Asignatura" required pattern="[A-Za-z0-9IVXivx\s]+">
             <button id="matricularEstudiante">Matricular</button>
             <div id="errorMatricularEstudiante" class="error-message"></div>
         </form>
@@ -78,7 +78,7 @@
             <label for="idDesmatricular">ID del Estudiante</label>
             <input type="text" id="idDesmatricular" placeholder="ID del Estudiante" required pattern="\d+">
             <label for="nombreDesmatricular">Nombre de la Asignatura</label>
-            <input type="text" id="nombreDesmatricular" placeholder="Nombre de la Asignatura" required pattern="[A-Za-z0-9IVXivx]+">
+            <input type="text" id="nombreDesmatricular" placeholder="Nombre de la Asignatura" required pattern="[A-Za-z0-9IVXivx\s]+">
             <button id="desmatricularEstudiante">Desmatricular</button>
             <div id="errorDesmatricularEstudiante" class="error-message"></div>
         </form>
@@ -88,9 +88,9 @@
             <label for="idCalificacion">ID del Estudiante</label>
             <input type="text" id="idCalificacion" placeholder="ID del Estudiante" required pattern="\d+">
             <label for="nombreCalificacion">Nombre de la Asignatura</label>
-            <input type="text" id="nombreCalificacion" placeholder="Nombre de la Asignatura" required pattern="[A-Za-z0-9IVXivx]+">
+            <input type="text" id="nombreCalificacion" placeholder="Nombre de la Asignatura" required pattern="[A-Za-z0-9IVXivx\s]+">
             <label for="calificacion">Calificación</label>
-            <input type="text" id="calificacion" placeholder="Calificación" required min="0" max="10">
+            <input type="number" id="calificacion" placeholder="Calificación" required min="0" max="10">
             <button id="agregarCalificacion">Asignar Calificación</button>
             <div id="errorAsignarCalificacion" class="error-message"></div>
         </form>
