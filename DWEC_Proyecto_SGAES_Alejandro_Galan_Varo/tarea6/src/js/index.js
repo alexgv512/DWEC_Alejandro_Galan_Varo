@@ -1,34 +1,61 @@
-ocument.addEventListener('DOMContentLoaded', () => {
-    const content = document.getElementById('content');
-    const apiKey = '36f472b41dmsh2dd32c549d11796p15059fjsn4da4a944eaf4'; // Reemplaza con tu clave de API
-    const url = 'https://carfax1.p.rapidapi.com/v1/cars';
+document.addEventListener('DOMContentLoaded', () => {
+    let page = 1;
+    let isLoading = false;
 
-    const fetchData = async () => {
+    async function fetchCatPhotos() {
+        if (isLoading) return;
+        isLoading = true;
+
         try {
-            const response = await fetch(url, {
+            const response = await fetch(`https://api.thecatapi.com/v1/images/search?limit=20&page=${page}`, {
                 method: 'GET',
                 headers: {
-                    'X-RapidAPI-Key': apiKey,
-                    'X-RapidAPI-Host': 'carfax1.p.rapidapi.com'
+                    'x-api-key': 'YOUR_CAT_API_KEY'
                 }
             });
-            const data = await response.json();
-            data.forEach(item => {
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.innerHTML = `
-                    <img src="${item.image}" alt="${item.title}">
-                    <h2>${item.title}</h2>
-                    <p>${item.text}</p>
-                `;
-                content.appendChild(card);
-            });
+            const catPhotos = await response.json();
+            renderPhotos(catPhotos.map(catPhoto => ({
+                url: catPhoto.url,
+                title: 'A cute cat'
+            })));
+            page++;
         } catch (error) {
-            console.error('Error fetching data:', error);
+            console.error('Error al obtener las fotos de gatos:', error);
         } finally {
-            console.log('Fetch operation completed.');
+            isLoading = false;
         }
-    };
+    }
 
-    fetchData();
+    function renderPhotos(photos) {
+        const container = document.getElementById('content');
+
+        photos.forEach(photo => {
+            const card = document.createElement('article');
+            card.className = 'card w-full h-full border border-gray-300 rounded-lg overflow-hidden items-center justify-start m-2 shadow-md transition-transform transform hover:scale-105';
+
+            const img = document.createElement('img');
+            img.src = photo.url;
+            img.alt = photo.title;
+            img.className = 'w-full h-full object-cover rounded-t-lg';
+            img.style.width = '300px'; // Set fixed width
+            img.style.height = '300px'; // Set fixed height
+
+            const title = document.createElement('h3');
+            title.className = 'text-center text-lg font-semibold mt-2 text-gray-700';
+            title.textContent = photo.title;
+
+            card.appendChild(img);
+            card.appendChild(title);
+            container.appendChild(card);
+        });
+    }
+
+    function handleScroll() {
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 500 && !isLoading) {
+            fetchCatPhotos();
+        }
+    }
+
+    window.addEventListener('scroll', handleScroll);
+    fetchCatPhotos();
 });
