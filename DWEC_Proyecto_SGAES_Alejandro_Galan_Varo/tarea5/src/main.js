@@ -69,6 +69,19 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Validación en tiempo real para cada campo de entrada
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(input => {
+        const errorSpan = document.getElementById(`error${input.id.charAt(0).toUpperCase() + input.id.slice(1)}`);
+        input.addEventListener('input', () => {
+            if (!input.checkValidity()) {
+                errorSpan.textContent = input.validationMessage;
+            } else {
+                errorSpan.textContent = '';
+            }
+        });
+    });
 });
 
 // Eventos de la interfaz
