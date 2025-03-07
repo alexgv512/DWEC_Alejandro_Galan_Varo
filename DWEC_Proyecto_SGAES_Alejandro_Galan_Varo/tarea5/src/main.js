@@ -76,7 +76,47 @@ document.addEventListener('DOMContentLoaded', () => {
         const errorSpan = document.getElementById(`error${input.id.charAt(0).toUpperCase() + input.id.slice(1)}`);
         input.addEventListener('input', () => {
             if (!input.checkValidity()) {
-                errorSpan.textContent = input.validationMessage;
+                switch (input.id) {
+                    case 'idEstudiante':
+                    case 'idEliminar':
+                    case 'idMatricular':
+                    case 'idDesmatricular':
+                    case 'idCalificacion':
+                        errorSpan.textContent = 'El ID debe contener solo números.';
+                        break;
+                    case 'nombreEstudiante':
+                    case 'provincia':
+                    case 'localidad':
+                        errorSpan.textContent = 'El nombre debe contener solo letras y espacios.';
+                        break;
+                    case 'edadEstudiante':
+                        errorSpan.textContent = 'La edad debe ser un número entre 1 y 120.';
+                        break;
+                    case 'calle':
+                        errorSpan.textContent = 'La calle debe contener solo letras y espacios.';
+                        break;
+                    case 'numero':
+                        errorSpan.textContent = 'El número debe contener solo números.';
+                        break;
+                    case 'piso':
+                        errorSpan.textContent = 'El piso debe contener solo números.';
+                        break;
+                    case 'codigoPostal':
+                        errorSpan.textContent = 'El código postal debe contener 5 números.';
+                        break;
+                    case 'nombreAsignatura':
+                    case 'nombreEliminar':
+                    case 'nombreMatricular':
+                    case 'nombreDesmatricular':
+                    case 'nombreCalificacion':
+                        errorSpan.textContent = 'El nombre de la asignatura debe contener solo letras, números romanos y espacios.';
+                        break;
+                    case 'calificacion':
+                        errorSpan.textContent = 'La calificación debe ser un número entre 0 y 10.';
+                        break;
+                    default:
+                        errorSpan.textContent = input.validationMessage;
+                }
             } else {
                 errorSpan.textContent = '';
             }
