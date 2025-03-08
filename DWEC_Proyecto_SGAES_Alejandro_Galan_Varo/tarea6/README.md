@@ -54,9 +54,10 @@ npm install
 
 ### componentes flowbite que he usado
 1. **Header Breadcrumb**: He utilizado el componente de breadcrumb en el header.
+https://flowbite.com/docs/components/breadcrumb/#header-breadcrumb
 
 2. **Default Footer**: He utilizado el componente de footer por defecto de Tailwind CSS.
-
+https://flowbite.com/docs/components/footer/#default-footer
 ### Compilar CSS
 
 Para compilar el CSS utilizando Tailwind CSS, ejecuta el siguiente comando:
@@ -69,6 +70,8 @@ npm run build:css
 
 Abre `src/index.html` o `src/jquery.html` en tu navegador para ver la página web.
 
+### si no funciona el scroll infinito
+pruebe a cabiar la resolucion de la pantalla ya que de esa forma ya empieza a funcionar correctamente(por lo que he estado mirando es por la propia API)
 ## Dependencias
 
 - [Tailwind CSS](https://tailwindcss.com/)
