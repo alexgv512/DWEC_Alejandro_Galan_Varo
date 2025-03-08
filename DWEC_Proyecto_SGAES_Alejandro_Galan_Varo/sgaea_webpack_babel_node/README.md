@@ -1,138 +1,115 @@
-# Sistema de Gestión Académica de Estudiantes y Asignaturas
+# Proyecto de Sistema de Gestión Académica
 
-Este proyecto es un Sistema de Gestión Académica desarrollado por mí, Adrián Martín Vázquez. Proporciona gestión de registros de estudiantes y asignaturas, incluyendo la creación, eliminación y matriculación de estudiantes.
+Este proyecto es un sistema de gestión académica desarrollado en JavaScript utilizando Webpack y Babel. Permite gestionar estudiantes, asignaturas y calificaciones.
 
-## Configuración del Entorno
+## Estructura del Proyecto
 
-### Requisitos
+```
+.babelrc
+.gitignore
+package.json
+webpack.config.js
+img/
+    Captura de pantalla 2025-03-03 134818.png
+    Captura de pantalla 2025-03-03 134934.png
+    Captura de pantalla 2025-03-03 135021.png
+src/
+    index.html
+    main.js
+    classes/
+        Asignatura.js
+        Direccion.js
+        Estudiante.js
+        Persona.js
+        SistemaGestionAcademica.js
+    utils/
+        menu.js
+```
 
-- Node.js en tu equipo
-- npm (para los comandos)
+## Instalación
 
-### Mi Proyecto
+1. Clona el repositorio:
+    ```sh
+    git clone <URL_DEL_REPOSITORIO>
+    cd <NOMBRE_DEL_REPOSITORIO>
+    ```
 
-#### Instalación
+2. Instala las dependencias:
+    ```sh
+    npm install
+    ```
 
+## Scripts Disponibles
 
-2. Instala las dependencias del proyecto:
+- `npm start`: Inicia el servidor de desarrollo.
+- `npm run build`: Construye el proyecto para producción.
 
-   ```sh
-   npm install
-   ```
+## Despliegue en Netlify
 
-### Práctica
+1. Crea una cuenta en [Netlify](https://www.netlify.com/) si no tienes una.
+2. Conecta tu repositorio de GitHub a Netlify.
+3. Configura los ajustes de despliegue:
+    - Build Command: `npm run build`
+    - Publish Directory: `dist`
+4. Despliega el proyecto.
 
-#### Instalación Práctica
+## Verificación en Navegadores Antiguos con BrowserStack
 
-1. Crea una nueva carpeta para tu proyecto y navega a ella:
+1. Crea una cuenta en [BrowserStack](https://www.browserstack.com/) si no tienes una.
+2. Inicia una sesión en BrowserStack.
+3. Selecciona el navegador y la versión que deseas probar.
+4. Ingresa la URL de tu proyecto desplegado en Netlify.
+5. Verifica que el proyecto funcione correctamente en el navegador seleccionado.
 
-   ```sh
-   mkdir tu_proyecto_sgaea
+## Notas
 
-   cd tu_proyecto_sgaea
-   ```
-2. Inicializa un nuevo proyecto de Node.js:
-
-   ```sh
-   npm init -y
-   ```
-3. Instala las dependencias necesarias:
-
-   ```sh
-   npm install --save-dev @babel/core @babel/polyfill @babel/preset-env babel-loader clean-webpack-plugin html-webpack-plugin webpack webpack-cli webpack-dev-server
-   ```
-4. Crea los archivos de configuración siguientes, a continuación introduciremos su información:
-
-   - [webpack.config.js](http://_vscodecontentref_/1)
-   - [.babelrc](http://_vscodecontentref_/2)
-
-### Configuración de Webpack y Babel
-
-El proyecto utiliza Webpack para la construcción y Babel para la transpilación del código en JS moderno que es el que se utiliza actualmente y el que usaremos en esta guía.
-
-- El archivo de configuración de Webpack contiene la siguiente información:
-
-```sh
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-
-module.exports = {
-entry: ['@babel/polyfill', './src/main.js'],
-output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
-},
-module: {
-    rules: [
+- Asegúrate de que el archivo `.babelrc` esté configurado correctamente para soportar navegadores antiguos:
+    ```jsonc
     {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-        loader: 'babel-loader'
-        }
-    },
-    {
-        test: /\.ttf$/,
-        type: 'asset/resource'
+        "presets": ["@babel/preset-env"]
     }
-    ]
-},
-plugins: [
-    new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-    template: './index.html'
-    })
-],
-mode: 'production'
-};
-```
+    ```
 
-- La configuración de Babel contiene la siguiente información:
+- El archivo `webpack.config.js` está configurado para generar un bundle compatible con navegadores antiguos:
+    ```js
+    const path = require('path');
+    const HtmlWebpackPlugin = require('html-webpack-plugin');
+    const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-```sh
-{
-    "presets": ["@babel/preset-env"]
-}
-```
-
-### Comando para compilar
-
-`npm run build`: Construye el proyecto para producción, en concreto te creara un nuevo directorio llamado dist donde se encontrara el archivo de construcción build.js y el index.html que será el que se ejecutará para la transpilación del código.
-
-## Subir el Código al Proveedor de Hosting Netlify
-
-1. Construye el proyecto para producción como hemos visto antes:
-
-   ```sh
-   npm run build
-   ```
-2. Como usaremos Netlify por su facilidad de dominio gratis y que nuestro código no es tan, entraremos en su sitio web y nos registramos con nuestra cuenta de Github a ser posible
-3. Clicamos en Import from Git para importar nuestro proyecto que tendremos en un repositorio en nuestro Github
-4. Luego, decimos el nombre que tendrá nuestro dominio junto con la extension gratuita netlify.app
-5. Decimos el comando que usará para contruir el proyecto para producción que ya hemos dicho antes que es npm run build, además de decir que la carpeta que se usará es la dist
-6. Con eso hecho, se empezara a crear nuestra página, una vez terminado el proceso ya podremos entrar dentro del enlace que aparecerá aunque ya lo sabemos que es: NombreQueHasPuesto.netlify.app
-
-## Probar el Código
-
-Una vez dentro de la página para probar el código, abre la consola de desarrollador en tu navegador (F12) y navega a la pestaña de "Consola" para ver el programa ejecutarse que iremos moviendonos mediante notificaciones que aparecen como pop ups en pantalla.
-
-## Uso de Browserstack para navegadores antiguos
-
-1. Para ello tenemos que iniciar sesión o crear una cuenta
-2. Omitir o decir para que lo usaremos
-3. Pasar el enlace URL que nos da Netlify de nuestro dominio para que se lo demos a browserstack y probemos en demás navegadores
-4. Elegir por sistema operativo la versión de navegadores disponibles que nos proporciona
-
-   En la siguiente sección mostraré 3 pruebas que hice en la versión que ví más antigua en algunos navegadores (Microsoft Edge, Firefox, Chrome)
-
+    module.exports = {
+        entry: ['@babel/polyfill', './src/main.js'],
+        output: {
+            filename: 'bundle.js',
+            path: path.resolve(__dirname, 'dist')
+        },
+        module: {
+            rules: [
+                {
+                    test: /\.js$/,
+                    exclude: /node_modules/,
+                    use: {
+                        loader: 'babel-loader'
+                    }
+                },
+                {
+                    test: /\.ttf$/,
+                    type: 'asset/resource'
+                }
+            ]
+        },
+        plugins: [
+            new CleanWebpackPlugin(),
+            new HtmlWebpackPlugin({
+                template: '../src/index.html'
+            })
+        ],
+        mode: 'production'
+    };
+    ```
 ## Resultados de la Prueba
-
-1. Firefox 44
-   ![11111](img/Captura%20de%20pantalla%202025-03-03%20134818.png)
-2. Chrome 62
-   ![22222](img/Captura%20de%20pantalla%202025-03-03%20134934.png)
+Firefox 44![11111](img/Captura%20de%20pantalla%202025-03-03%20134818.png)
+Chrome 62![22222](img/Captura%20de%20pantalla%202025-03-03%20134934.png)
 
 
-CanIUse:		   JAVASCRIPT
-CanIUse - ![33333](img/Captura%20de%20pantalla%202025-03-03%20135021.png) 
+CanIUse:           JAVASCRIPT
+CanIUse - ![33333](img/Captura%20de%20pantalla%202025-03-03%20135021.png)

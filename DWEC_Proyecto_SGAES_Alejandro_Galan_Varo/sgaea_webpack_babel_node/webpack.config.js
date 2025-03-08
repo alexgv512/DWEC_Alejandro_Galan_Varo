@@ -26,7 +26,7 @@ module: {
 plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-    template: './index.html'
+    template: '../src/index.html'
     })
 ],
 mode: 'production'

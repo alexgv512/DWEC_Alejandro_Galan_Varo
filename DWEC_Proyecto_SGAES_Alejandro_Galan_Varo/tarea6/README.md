@@ -52,10 +52,10 @@ npm install
 
 ## Uso
 
-### componentes flowbite que he utilizado
-1.Header Breadcrumb: He utilizado el componente de breadcrumb en el header y lo he modificado para eliminar los datos que sobraban y los div y span que inyectaban los he cambiado por section. Aquí está el enlace al componente: Flowbite Header Breadcrumb.
+### componentes flowbite que he usado
+1. **Header Breadcrumb**: He utilizado el componente de breadcrumb en el header.
 
-2.Default Footer: He utilizado el componente de footer por defecto de Tailwind CSS y lo he modificado para eliminar los datos que sobraban y los div y span que inyectaban los he cambiado por section. Aquí está el enlace al componente: Flowbite Default Footer.
+2. **Default Footer**: He utilizado el componente de footer por defecto de Tailwind CSS.
 
 ### Compilar CSS
 
