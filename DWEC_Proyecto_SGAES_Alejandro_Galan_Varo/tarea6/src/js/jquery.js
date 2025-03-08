@@ -42,7 +42,7 @@ $(() => {
     }
 
     function handleScroll() {
-        if ($(window).scrollTop() + $(window).height() >= $(document).height() - 500 && !isLoading) {
+        if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100 && !isLoading) {
             fetchCatPhotos();
         }
     }
