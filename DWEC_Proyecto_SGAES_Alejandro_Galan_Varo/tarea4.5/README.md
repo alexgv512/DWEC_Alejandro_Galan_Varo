@@ -111,5 +111,5 @@ Firefox 44![11111](img/Captura%20de%20pantalla%202025-03-03%20134818.png)
 Chrome 62![22222](img/Captura%20de%20pantalla%202025-03-03%20134934.png)
 
 
-CanIUse:           JAVASCRIPT
+CanIUse:JAVASCRIPT
 CanIUse - ![33333](img/Captura%20de%20pantalla%202025-03-03%20135021.png)
