@@ -48,5 +48,13 @@ $(() => {
     }
 
     $(window).on('scroll', handleScroll);
-    $(window).on('load', fetchCatPhotos);
+    $(window).on('load', () => {
+        function cargarHastaLlenar() {
+            fetchCatPhotos();
+            if (content.height() < $(window).height()) {
+                setTimeout(cargarHastaLlenar, 500);
+            }
+        }
+        cargarHastaLlenar();
+    });
 });

@@ -56,6 +56,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    async function fillScreenWithPhotos() {
+        while (document.body.scrollHeight <= window.innerHeight) {
+            await fetchCatPhotos();
+        }
+    }
+
     window.addEventListener('scroll', handleScroll);
-    fetchCatPhotos();
+    fillScreenWithPhotos();
 });

@@ -70,8 +70,6 @@ npm run build:css
 
 Abre `src/index.html` o `src/jquery.html` en tu navegador para ver la página web.
 
-### si no funciona el scroll infinito
-pruebe a cabiar la resolucion de la pantalla ya que de esa forma ya empieza a funcionar correctamente(por lo que he estado mirando es por la propia API)
 ## Dependencias
 
 - [Tailwind CSS](https://tailwindcss.com/)
