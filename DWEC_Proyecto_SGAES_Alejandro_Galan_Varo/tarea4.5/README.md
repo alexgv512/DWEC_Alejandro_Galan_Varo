@@ -28,42 +28,15 @@ src/
 
 ## Instalación
 
-1. Clona el repositorio:
+
+
+1. Instala las dependencias:
     ```sh
-    git clone <URL_DEL_REPOSITORIO>
-    cd <NOMBRE_DEL_REPOSITORIO>
+   npm install --save-dev webpack webpack-cli webpack-dev-server babel-loader @babel/core @babel/preset-env @babel/polyfill html-webpack-plugin clean-webpack-plugin
     ```
+2. Se crea al archivo .babelrc 
 
-2. Instala las dependencias:
-    ```sh
-    npm install
-    ```
-
-## Scripts Disponibles
-
-- `npm start`: Inicia el servidor de desarrollo.
-- `npm run build`: Construye el proyecto para producción.
-
-## Despliegue en Netlify
-
-1. Crea una cuenta en [Netlify](https://www.netlify.com/) si no tienes una.
-2. Conecta tu repositorio de GitHub a Netlify.
-3. Configura los ajustes de despliegue:
-    - Build Command: `npm run build`
-    - Publish Directory: `dist`
-4. Despliega el proyecto.
-
-## Verificación en Navegadores Antiguos con BrowserStack
-
-1. Crea una cuenta en [BrowserStack](https://www.browserstack.com/) si no tienes una.
-2. Inicia una sesión en BrowserStack.
-3. Selecciona el navegador y la versión que deseas probar.
-4. Ingresa la URL de tu proyecto desplegado en Netlify.
-5. Verifica que el proyecto funcione correctamente en el navegador seleccionado.
-
-## Notas
-
-- Asegúrate de que el archivo `.babelrc` esté configurado correctamente para soportar navegadores antiguos:
+- Este esta configurado para soportar navegadores antiguos:
     ```jsonc
     {
         "presets": ["@babel/preset-env"]
@@ -106,6 +79,25 @@ src/
         mode: 'production'
     };
     ```
+
+## Despliegue en Netlify
+
+1. Crea una cuenta en [Netlify](https://www.netlify.com/) si no tienes una.
+2. Conecta tu repositorio de GitHub a Netlify.
+3. Configura los ajustes de despliegue:
+    - Build Command: `npm run build`
+    - Publish Directory: `dist`
+4. Despliega el proyecto.
+
+## Verificación en Navegadores Antiguos con BrowserStack
+
+1. Crea una cuenta en [BrowserStack](https://www.browserstack.com/) si no tienes una.
+2. Inicia una sesión en BrowserStack.
+3. Selecciona el navegador y la versión que deseas probar.
+4. Ingresa la URL de tu proyecto desplegado en Netlify.
+5. Verifica que el proyecto funcione correctamente en el navegador seleccionado.
+
+
 ## Resultados de la Prueba
 Firefox 44![11111](img/Captura%20de%20pantalla%202025-03-03%20134818.png)
 Chrome 62![22222](img/Captura%20de%20pantalla%202025-03-03%20134934.png)
