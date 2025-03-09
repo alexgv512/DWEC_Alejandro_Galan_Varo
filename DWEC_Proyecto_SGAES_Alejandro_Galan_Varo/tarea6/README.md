@@ -49,7 +49,7 @@ Este proyecto es una tarea de desarrollo web que utiliza HTML, CSS, JavaScript, 
 ```sh
 npm install
 ```
-
+va
 ## Uso
 
 ### Componentes Tailwind css de flowbite que he usado
@@ -58,6 +58,7 @@ https://flowbite.com/docs/components/breadcrumb/#header-breadcrumb
 
 2. **Default Footer**: He utilizado el componente de footer por defecto de Tailwind CSS.
 https://flowbite.com/docs/components/footer/#default-footer
+
 ### Compilar CSS
 
 Para compilar el CSS utilizando Tailwind CSS, ejecuta el siguiente comando:
