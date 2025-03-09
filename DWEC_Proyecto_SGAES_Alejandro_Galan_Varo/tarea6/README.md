@@ -52,7 +52,7 @@ npm install
 
 ## Uso
 
-### componentes flowbite que he usado
+### Componentes Tailwind css de flowbite que he usado
 1. **Header Breadcrumb**: He utilizado el componente de breadcrumb en el header.
 https://flowbite.com/docs/components/breadcrumb/#header-breadcrumb
 
